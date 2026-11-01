@@ -150,7 +150,7 @@
 
         @media (max-width: 950px) {
             main {
-                grid-template-columns: 1fr; /* 모바일에서는 1열로 세로 배치 */
+                grid-template-columns: 1fr;
             }
         }
 
@@ -260,7 +260,7 @@
         /* Dossier Cards Grid */
         .dossier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 15px;
         }
 
@@ -303,15 +303,52 @@
             font-weight: bold;
         }
 
-        .field-label {
-            color: var(--accent-color);
+        /* 프로필 레이아웃 설정 */
+        .profile-layout {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .profile-img-wrap {
+            width: 100px;
+            height: 110px;
+            border: 1px solid var(--main-color);
+            background: #000;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(30%) hue-rotate(60deg) contrast(120%);
+        }
+
+        .profile-img-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,255,102,0.1) 50%, rgba(0,0,0,0.3) 50%);
+            background-size: 100% 3px;
+            pointer-events: none;
+        }
+
+        .profile-info {
+            flex: 1;
             font-size: 0.85rem;
         }
 
+        .field-label {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
         .card-body p {
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-            line-height: 1.4;
+            margin-bottom: 5px;
+            line-height: 1.35;
         }
 
         /* Redacted / Classification Mask */
@@ -499,14 +536,21 @@
                         <span class="card-id">ID: 01-H-170</span>
                         <span class="card-name">이도현 (LEE DO-HYUN)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 신원 등급:</span> 위험도 특A급 (즉시 생포 및 격리 대상)</p>
-                        <p><span class="field-label">• 신체 제원:</span> 17세 / 180cm</p>
-                        <p><span class="field-label">• 성향 분석:</span> 메카닉 구조학 천재성 보유, 고데시벨 소음 기피</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAgAElEQVR4XuzdB3gcxdX38e3e..." alt="이도현">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 신원 등급:</span> 위험도 특A급 (즉시 생포 및 격리)</p>
+                            <p><span class="field-label">• 신체 제원:</span> 17세 / 180cm</p>
+                            <p><span class="field-label">• 성향 분석:</span> 메카닉 천재성 보유, 고소음 기피</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항 (기체 접촉 및 싱크로):</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">제국연맹 사건으로 부모를 잃은 전쟁고아 출신. 전 임시정부 수석 연구원 이강렬 박사의 기술을 사수함.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">독립군 테러 공방전 중, 과거 제국군 연구소에서 유실되었던 최신형 프라임 기체 OHMEGA의 콕핏에 진입, 미등록 상태임에도 즉각적인 기동 제어 및 싱크로에 성공함.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">기체 OHMEGA는 차세대 코어 엔진을 탑재한 독점적 최신형 병기이므로, 대상자 이도현을 확보하는 즉시 기체와 분리하여 뇌파 동조 링크를 강제 해제해야 함.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">제국연맹 사건으로 부모를 잃은 전쟁고아 출신. 전 임시정부 수석 연구원 이강렬 박사의 기술을 사수함.[cite: 8]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">독립군 테러 공방전 중, 과거 제국군 연구소에서 유실되었던 최신형 프라임 기체 OHMEGA의 콕핏에 진입, 미등록 상태임에도 즉각적인 기동 제어 및 싱크로에 성공함.[cite: 8]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">기체 OHMEGA는 차세대 코어 엔진을 탑재한 독점적 최신형 병기이므로, 대상자 이도현을 확보하는 즉시 기체와 분리하여 뇌파 동조 링크를 강제 해제해야 함.[cite: 8]</span></p>
                     </div>
                 </div>
 
@@ -516,13 +560,20 @@
                         <span class="card-id">ID: 02-S-173</span>
                         <span class="card-name">채설아 (CHAE SEOL-AH)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 신원 등급:</span> 밀착 감시 대상 (B급 - 대상자 01-H-170의 정신적 인질)</p>
-                        <p><span class="field-label">• 신체 제원:</span> 17세 / 173cm</p>
-                        <p><span class="field-label">• 성향 분석:</span> 구세대 캐릭터('치이카와') 수집벽, 오이 성분 기피</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,..." alt="채설아">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 신원 등급:</span> 밀착 감시 (B급 - 인질)</p>
+                            <p><span class="field-label">• 신체 제원:</span> 17세 / 173cm</p>
+                            <p><span class="field-label">• 성향 분석:</span> '치이카와' 수집벽, 오이 성분 기피</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항:</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">전직 베테랑 파일럿 채상훈의 자녀. 이도현이 유일하게 심리적 방어 기제를 해제하는 대상.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">현재 이도현이 최신형 기체 OHMEGA를 타고 제국군을 적대하는 상황에서, 대상자 채설아의 신변을 확보하는 것이 이도현을 무력화하거나 투항하게 만들 가장 효율적인 '심리적 제어 장치'가 될 것으로 판단됨.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">전직 베테랑 파일럿 채상훈의 자녀. 이도현이 유일하게 심리적 방어 기제를 해제하는 대상.[cite: 9]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">현재 이도현이 최신형 기체 OHMEGA를 타고 제국군을 적대하는 상황에서, 대상자 채설아의 신변을 확보하는 것이 이도현을 무력화하거나 투항하게 만들 가장 효율적인 '심리적 제어 장치'가 될 것으로 판단됨.[cite: 9]</span></p>
                     </div>
                 </div>
 
@@ -532,13 +583,20 @@
                         <span class="card-id">ID: 03-B-185</span>
                         <span class="card-name">백중구 (BAEK JUNG-GU)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 소속 및 직위:</span> 독립군(KRA) 전술 작전 상사</p>
-                        <p><span class="field-label">• 신체 제원:</span> 37세 / 185cm</p>
-                        <p><span class="field-label">• 성향 분석:</span> 극심한 니코틴 의존(연초), 전자담배 거부반응</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,..." alt="백중구">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 소속/직위:</span> 독립군(KRA) 전술 작전 상사</p>
+                            <p><span class="field-label">• 신체 제원:</span> 37세 / 185cm</p>
+                            <p><span class="field-label">• 성향 분석:</span> 니코틴 의존(연초), 전자담배 거부</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항:</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">부친이 임시정부 부장을 역임한 핵심 가문 출신이었으나, 제국연맹 사건 당시 가문과 부락 전체가 불순분자 예방 학살의 표적이 되어 전멸함. 혼자 살아남은 생존자로서 제국에 대한 증오심이 광신적인 수준임.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">심장 질환으로 인해 최신형 기체 운용(파일럿)은 불가능 판정을 받았으나, 대인 테러 및 게릴라 폭파 공작의 최전선 지휘관으로서 제국 점령 지대의 치안을 심각하게 위해하고 있음.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">부친이 임시정부 부장을 역임한 핵심 가문 출신이었으나, 제국연맹 사건 당시 가문과 부락 전체가 불순분자 예방 학살의 표적이 되어 전멸함. 혼자 살아남은 생존자로서 제국에 대한 증오심이 광신적인 수준임.[cite: 11]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">심장 질환으로 인해 최신형 기체 운용(파일럿)은 불가능 판정을 받았으나, 대인 테러 및 게릴라 폭파 공작의 최전선 지휘관으로서 제국 점령 지대의 치안을 심각하게 위해하고 있음.[cite: 11]</span></p>
                     </div>
                 </div>
 
@@ -548,13 +606,20 @@
                         <span class="card-id">ID: 04-Y-176</span>
                         <span class="card-name">유지민 (YOO JI-MIN)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 소속 및 직위:</span> 독립군(KRA) 전술 작전 하사</p>
-                        <p><span class="field-label">• 신체 제원:</span> 29세 / 176cm / 우안 의안 착용</p>
-                        <p><span class="field-label">• 성향 분석:</span> 알코올(맥주) 선호, 작전 중 교통 체증 및 지연 극도 혐오</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,..." alt="유지민">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 소속/직위:</span> 독립군(KRA) 전술 작전 하사</p>
+                            <p><span class="field-label">• 신체 제원:</span> 29세 / 176cm / 우안 의안</p>
+                            <p><span class="field-label">• 성향 분석:</span> 맥주 선호, 교통체증 극도 혐오</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항:</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">전직 민간 기자 출신. 제국연맹 사건(민간인 대량 학살 및 사찰)의 진상과 비밀 매장지 명부를 조사하던 중 제국 국가안전부에 피체됨.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">보안부 비밀 취조실에서 리 옌 부장에게 직접 잔혹한 고문을 당해 우안(오른쪽 눈)을 상실함. 합법적 펜대만으로는 시스템을 바꿀 수 없음을 깨닫고 독립군에 투신, 현재 백중구 상사의 가장 날카로운 칼로 활동 중.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">전직 민간 기자 출신. 제국연맹 사건(민간인 대량 학살 및 사찰)의 진상과 비밀 매장지 명부를 조사하던 중 제국 국가안전부에 피체됨.[cite: 10]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">보안부 비밀 취조실에서 리 옌 부장에게 직접 잔혹한 고문을 당해 우안(오른쪽 눈)을 상실함. 합법적 펜대만으로는 시스템을 바꿀 수 없음을 깨닫고 독립군에 투신, 현재 백중구 상사의 가장 날카로운 칼로 활동 중.[cite: 10]</span></p>
                     </div>
                 </div>
 
@@ -564,13 +629,20 @@
                         <span class="card-id">ID: 05-K-187</span>
                         <span class="card-name">강유 (KANG YU)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 소속 및 직위:</span> 독립군(KRA) 최고 사령관</p>
-                        <p><span class="field-label">• 신체 제원:</span> 53세 / 187cm</p>
-                        <p><span class="field-label">• 성향 분석:</span> 고전 전략서 독서, 하급자의 군율 위반 및 무례함 불용</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,..." alt="강유">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 소속/직위:</span> 독립군(KRA) 최고 사령관</p>
+                            <p><span class="field-label">• 신체 제원:</span> 53세 / 187cm</p>
+                            <p><span class="field-label">• 성향 분석:</span> 고전 전략서 독서, 무례함 불용</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항 (제국과의 밀약):</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">임시정부 창립 멤버이나 내부 파벌 숙청을 통해 독재적 지휘권을 장악한 정치가.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">제국연맹 사건 당시 민간인 학살을 묵인 혹은 방조하여 자신의 잠재적 정치 정적들을 제거한 혐의가 있음. 현재 중화제국 상층부와 밀약을 맺고 한국을 제후국(식민지 자치령)으로 넘기는 대신 자신의 영구적 독재 권력을 보장받는 내부 배신 행위를 진행 중.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">임시정부 창립 멤버이나 내부 파벌 숙청을 통해 독재적 지휘권을 장악한 정치가.[cite: 12]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">제국연맹 사건 당시 민간인 학살을 묵인 혹은 방조하여 자신의 잠재적 정치 정적들을 제거한 혐의가 있음. 현재 중화제국 상층부와 밀약을 맺고 한국을 제후국(식민지 자치령)으로 넘기는 대신 자신의 영구적 독재 권력을 보장받는 내부 배신 행위를 진행 중.[cite: 12]</span></p>
                     </div>
                 </div>
 
@@ -580,13 +652,20 @@
                         <span class="card-id">ID: 06-L-183</span>
                         <span class="card-name">리 옌 (LI YAN)</span>
                     </div>
-                    <div class="card-body">
-                        <p><span class="field-label">• 소속 및 직위:</span> 제국 제1국가안전부 부장 (Director)</p>
-                        <p><span class="field-label">• 신체 제원:</span> 42세 / 183cm</p>
-                        <p><span class="field-label">• 성향 분석:</span> 고난도 논리 퍼즐(스도쿠), 감정적 고문 행위 혐오</p>
+                    <div class="card-body profile-layout">
+                        <div class="profile-img-wrap">
+                            <img src="data:image/png;base64,..." alt="리 옌">
+                        </div>
+                        <div class="profile-info">
+                            <p><span class="field-label">• 소속/직위:</span> 제국 제1국가안전부 부장</p>
+                            <p><span class="field-label">• 신체 제원:</span> 42세 / 183cm</p>
+                            <p><span class="field-label">• 성향 분석:</span> 스도쿠 퍼즐, 감정적 고문 혐오</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="margin-top: 10px;">
                         <p><span class="field-label">• 특이사항:</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">제국 정통 군벌 출신이나, 세습 계급 사회의 썩은 뿌리를 뽑기 위해 '제국의 완전한 내부 전복(구체제 청소)'을 획득하려는 음모가. 과거 유지민 기자를 고문해 눈을 적출한 것도 정보 은폐를 위한 철저한 계산 행동이었음.</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">최신형 기체 OHMEGA의 유실과 강유 사령관의 야욕, 그리고 제국연맹 사건의 생존자들이 얽힌 이 판국을 제국의 기득권층을 한 번에 무너뜨릴 거대한 기회로 보고 배후에서 조율 중임.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">제국 정통 군벌 출신이나, 세습 계급 사회의 썩은 뿌리를 뽑기 위해 '제국의 완전한 내부 전복(구체제 청소)'을 획득하려는 음모가. 과거 유지민 기자를 고문해 눈을 적출한 것도 정보 은폐를 위한 철저한 계산 행동이었음.[cite: 13]</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">최신형 기체 OHMEGA의 유실과 강유 사령관의 야욕, 그리고 제국연맹 사건의 생존자들이 얽힌 이 판국을 제국의 기득권층을 한 번에 무너뜨릴 거대한 기회로 보고 배후에서 조율 중임.[cite: 13]</span></p>
                     </div>
                 </div>
             </div>
