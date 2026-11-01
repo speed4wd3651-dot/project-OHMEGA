@@ -353,30 +353,35 @@
             border: 1px dashed var(--alert-color);
         }
 
-        /* 세계관 문서 뷰어 스타일 */
-        .lore-view {
+        /* 공통 문서 뷰어 스타일 */
+        .doc-view {
             font-size: 0.9rem;
             line-height: 1.6;
             color: #bbf7d0;
         }
-        .lore-view h3 {
+        .doc-view h3 {
             color: var(--accent-color);
             margin: 20px 0 10px 0;
             border-bottom: 1px dashed var(--main-dim);
             padding-bottom: 5px;
             font-size: 1.05rem;
         }
-        .lore-view ul {
+        .doc-view h4 {
+            color: #ffffff;
+            margin: 12px 0 6px 0;
+            font-size: 0.95rem;
+        }
+        .doc-view ul {
             list-style-type: none;
             padding-left: 10px;
             margin-bottom: 15px;
         }
-        .lore-view li {
+        .doc-view li {
             margin-bottom: 8px;
             position: relative;
             padding-left: 15px;
         }
-        .lore-view li::before {
+        .doc-view li::before {
             content: "▪";
             position: absolute;
             left: 0;
@@ -538,8 +543,8 @@
                     <li class="nav-item" id="navLore" onclick="switchTab('lore')">
                         <span>[대외비] 주요 사태 일지 및 정세 변화 분석론</span><span id="statusLore">[대기]</span>
                     </li>
-                    <li class="nav-item" onclick="addLog('[보안] 특수 사건 조사 기록은 현재 잠금 상태입니다.')">
-                        <span>[대외비] 특수 사건 조사 기록 및 경위서</span><span>[잠금]</span>
+                    <li class="nav-item" id="navIncident" onclick="switchTab('incident')">
+                        <span>[대외비] 특수 사건 조사 기록 및 경위서</span><span id="statusIncident">[대기]</span>
                     </li>
                 </ul>
             </div>
@@ -720,7 +725,7 @@
                 </div>
             </div>
 
-            <!-- 2. 주요 사태 일지 및 정세 변화 분석론 뷰 (작성해주신 세계관 + 사진 삽입) -->
+            <!-- 2. 주요 사태 일지 및 정세 변화 분석론 뷰 -->
             <div id="viewLore" style="display: none;">
                 <div class="doc-header">
                     <h1 style="font-size: 1.3rem; letter-spacing: 1px;">[ZHONGHUA NET] 근대 대륙 변혁기 이후 세계 정세 변동사</h1>
@@ -730,7 +735,7 @@
                     </div>
                 </div>
 
-                <div class="lore-view">
+                <div class="doc-view">
                     <h3>[CODE-00] 제국 근대화 및 영토 확장기 (19세기~20세기 초)</h3>
                     <ul>
                         <li><strong>한족 제국의 부흥과 근대화 혁명:</strong> 19세기 중엽, 무능한 청(淸) 왕조를 무너뜨린 한족 중심의 신생 '중화제국' 수립. 서구 열강의 침탈에 맞서 아시아 최초 근대화 성공 및 패권 장악.</li>
@@ -743,7 +748,6 @@
                         <li><strong>이족보행 병기 '프라임' 탄생:</strong> 싱크로나이트가 생체 뇌파(Bio-Wave)에 반응해 운동 에너지를 발생시킨다는 점을 증명, 거대 이족보행 병기 개발로 전술 패러다임 파괴.</li>
                     </ul>
 
-                    <!-- 1번 사진 삽입: 싱크로나이트 -->
                     <div class="lore-img-container">
                         <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/synchronite.png" alt="싱크로나이트 광석">
                         <div class="lore-img-caption">[FIG-01] 지정 관리 물질 : 미지 광물 '싱크로나이트' 채굴 현장 보존 샘플</div>
@@ -762,7 +766,6 @@
                         <li><strong>오염 증후군 (싱크로시스 / 강철귀):</strong> 뇌파 동기화 과부하로 자아 인지가 파괴되는 정신 괴리 현상. 3단계 돌입자(강철귀)는 발견 즉시 사살, 1~2단계 격리자는 오메가 프로젝트 파일럿 소모품으로 강제 차출.</li>
                     </ul>
 
-                    <!-- 2번 사진 삽입: 싱크로시스 병 -->
                     <div class="lore-img-container">
                         <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/synchronosis.png" alt="싱크로시스 증후군 감염자">
                         <div class="lore-img-caption">[FIG-02] 오염 증후군 2단계 진행 환자 (신체 말단 변색 및 신경계 고착화 관찰)</div>
@@ -774,7 +777,6 @@
                         <li><strong>진동(鎭東) 제7프라임 대대:</strong> 식민지 주둔 최정예 기동대, 저항군 거점을 압살하는 공성 진압 특화.</li>
                     </ul>
 
-                    <!-- 3번 사진 삽입: 보안국 인물들 -->
                     <div class="lore-img-container">
                         <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/security_force.png" alt="제국 국가안전부 공안부 수뇌부">
                         <div class="lore-img-caption">[FIG-03] 중화제국 국가안전부 공안부 제4국 지휘관 및 수뇌부 열람 기록</div>
@@ -786,13 +788,78 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- 3. 특수 사건 조사 기록 및 경위서 뷰 -->
+            <div id="viewIncident" style="display: none;">
+                <div class="doc-header">
+                    <h1 style="font-size: 1.3rem; letter-spacing: 1px;">[CONFIDENTIAL] 신형 프라임 'OHMEGA' 탈취 및 경위 조사서</h1>
+                    <div class="doc-meta">
+                        <span>문서 번호: #IM-2026-0111</span>
+                        <span>작성 기관: 제국 방첩보안사령부</span>
+                    </div>
+                </div>
+
+                <div class="doc-view">
+                    <h3>1. 사건 개요</h3>
+                    <p style="margin-bottom: 15px;">2026년 11월 1일, 백중구 세력의 폭탄 테러에 대응한 제국군의 진압 작전 중, 극비리에 개발 중이던 차세대 프라임 'OHMEGA(오메가)'가 민간인 신분의 미확인 인원에 의해 무단 기동 및 탈취당하는 사건이 발생함. 해당 기체는 추격하던 제국군 프라임 3기를 순식간에 격파한 후 소실되었으며, 이후 용의자는 반정부 독립군 세력에 포섭되어 파일럿으로 투입된 것으로 확인됨.</p>
+
+                    <h3>2. 주요 인물 인적 사항</h3>
+                    <ul>
+                        <li><strong>이도현 (남, 용의자):</strong> 극비 프라임 개발자 '이강렬 박사'의 자녀. 정식 군사 훈련 경험 전무하나, 부친의 설계도를 독학함. '오메가'의 최초 탈취 및 조종자.</li>
+                        <li><strong>설아 (여, 동행자):</strong> 용의자 이도현과 동행 중이던 민간인. 격납고 탈출 과정에서 제국군 특수부대에 의해 신병 확보(생포)됨.</li>
+                        <li><strong>이강렬 (남, 구금 중):</strong> 전 제국 과학원 소속 박사. '오메가'의 핵심 개발자. 현재 제국군 연구 시설 내 억류되어 강제 개발 동원 중.</li>
+                        <li><strong>강 유 (남, 반정부 세력):</strong> 독립군 핵심 수뇌부. 이강렬 박사의 과거 인맥을 활용하여 용의자 이도현을 포섭한 인물.</li>
+                    </ul>
+
+                    <h3>3. 사건 발생 및 전개 경위</h3>
+                    <h4>3-1. 극비 격납고 침투 및 신형 기체 탈취</h4>
+                    <ul>
+                        <li>테러 진압 혼란을 틈타 용의자 이도현과 동행자 설아가 보안 구역인 '오메가' 연구 시설 내부로 무단 진입함.</li>
+                        <li>특수부대의 생포 시도 중 이도현이 조종석에 탑승하여 시스템을 무단 활성화함. 부친의 설계 원리를 완벽 숙지하고 있었던 것으로 판단됨.</li>
+                        <li>동행자 설아를 남겨둔 채 격납고를 파괴하고 탈출함.</li>
+                    </ul>
+
+                    <h4>3-2. 제국군 추격조 격파 및 도주</h4>
+                    <ul>
+                        <li>제국군 양산형 프라임 3기를 즉각 투입하여 포위 및 미사일 폭격 작전을 전개함.</li>
+                        <li>용의자는 회피 기동으로 미사일을 전량 무력화한 후, 전용 무장 '빔 샤벨'로 역공을 감행하여 제국군 프라임 3기 전파 (파일럿 3명 전원 사망).</li>
+                        <li>리 옌 사령관은 용의자의 비정상적인 조종 능력을 평가해 '생포 및 확보' 명령을 하달함.</li>
+                    </ul>
+
+                    <h4>3-3. 용의자의 심리적 상태 및 행적 추적</h4>
+                    <ul>
+                        <li>교전 직후 기체를 야산에 유기한 뒤 자택으로 귀가함.</li>
+                        <li>첫 살상 행위에 대한 심각한 외상후 스트레스 장애(PTSD) 증상을 보이며 칩거함.</li>
+                    </ul>
+
+                    <h3>4. 용의자 추적 및 독립군 포섭 과정</h3>
+                    <h4>4-1. 지하 주차장 추격전 및 독립군 개입</h4>
+                    <ul>
+                        <li>수색조가 자택을 급습하였으나 근거리 탈출 성공.</li>
+                        <li>지하 주차장 고립 순간, 독립군 요원 '백중구'와 '유지민'이 차량으로 개입하여 용의자를 확보하고 도주함.</li>
+                    </ul>
+
+                    <h4>4-2. 강 유의 가스라이팅 및 포섭 전략</h4>
+                    <ul>
+                        <li>독립군 수뇌 강 유는 부친과의 친분을 과시하며 정서적 유대감을 형성함.</li>
+                        <li>'부친 이강렬의 억류 및 강제 노동'과 '동행자 설아의 구금' 사실을 전달하며 심리적으로 압박함.</li>
+                        <li>사실상 부친과 지인의 안위를 인질 삼아 독립군 합류를 강제 유도함.</li>
+                    </ul>
+
+                    <h3>5. 결론 및 향후 조치 대책</h3>
+                    <ul>
+                        <li><strong>현 상황:</strong> 이도현은 독립군 정식 파일럿으로 합류하여 신형 기체 '오메가'를 몰고 제국군 전선을 향해 출격함.</li>
+                        <li><strong>조치 대책:</strong> '오메가' 성능 무력화 방안을 긴급 수립하고, 약점인 '이강렬 박사'와 '피의자 설아'의 신병을 특A급으로 철저히 통제할 것을 권고함.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="terminal-logs" id="termLogs">
             <div>[시스템] 제국 통제 데이터베이스 연결 완료 (프로토콜 AX-2026).</div>
-            <div>[안내] 사이드바에서 '주요 사태 일지 및 정세 변화 분석론'을 클릭하면 사진 자료가 포함된 세계관 문서가 열립니다.</div>
+            <div>[안내] 사이드바에서 원하시는 기밀 문서를 클릭하여 해독 열람할 수 있습니다.</div>
             <div>[도움말] '도움말' 또는 'help'를 입력하면 명령어 목록을 출력합니다.</div>
         </div>
         <div class="cmd-line">
@@ -866,27 +933,43 @@
             playBeep(900, 0.06);
             let profileView = document.getElementById('viewProfile');
             let loreView = document.getElementById('viewLore');
+            let incidentView = document.getElementById('viewIncident');
+
             let navProfile = document.getElementById('navProfile');
             let navLore = document.getElementById('navLore');
+            let navIncident = document.getElementById('navIncident');
+
             let statusProfile = document.getElementById('statusProfile');
             let statusLore = document.getElementById('statusLore');
+            let statusIncident = document.getElementById('statusIncident');
+
+            profileView.style.display = 'none';
+            loreView.style.display = 'none';
+            incidentView.style.display = 'none';
+
+            navProfile.classList.remove('active');
+            navLore.classList.remove('active');
+            navIncident.classList.remove('active');
+
+            statusProfile.innerText = '[대기]';
+            statusLore.innerText = '[대기]';
+            statusIncident.innerText = '[대기]';
 
             if (tabName === 'profile') {
                 profileView.style.display = 'block';
-                loreView.style.display = 'none';
                 navProfile.classList.add('active');
-                navLore.classList.remove('active');
                 statusProfile.innerText = '[열람중]';
-                statusLore.innerText = '[대기]';
                 addLog('> [시스템] 방첩 감시 대상자 인물 프로필 로드 완료.');
             } else if (tabName === 'lore') {
-                profileView.style.display = 'none';
                 loreView.style.display = 'block';
                 navLore.classList.add('active');
-                navProfile.classList.remove('active');
                 statusLore.innerText = '[열람중]';
-                statusProfile.innerText = '[대기]';
                 addLog('> [시스템] 주요 사태 일지 및 정세 변화 분석론 문서 해독 완료.');
+            } else if (tabName === 'incident') {
+                incidentView.style.display = 'block';
+                navIncident.classList.add('active');
+                statusIncident.innerText = '[열람중]';
+                addLog('> [시스템] #IM-2026-0111 신형 프라임 탈취 경위서 열람 허가.');
             }
         }
 
