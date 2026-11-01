@@ -383,6 +383,37 @@
             color: var(--main-color);
         }
 
+        /* 로어 문서 내 삽입 이미지 스타일 */
+        .lore-img-container {
+            margin: 15px 0;
+            border: 1px solid var(--main-color);
+            background: #000;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lore-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(30%) hue-rotate(60deg) contrast(120%);
+        }
+        .lore-img-container::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,255,102,0.1) 50%, rgba(0,0,0,0.3) 50%);
+            background-size: 100% 3px;
+            pointer-events: none;
+        }
+        .lore-img-caption {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            background: rgba(0, 20, 10, 0.9);
+            padding: 4px 8px;
+            border-top: 1px solid var(--main-dim);
+        }
+
         footer {
             border-top: 1px solid var(--main-dim);
             background: #020d08;
@@ -689,7 +720,7 @@
                 </div>
             </div>
 
-            <!-- 2. 주요 사태 일지 및 정세 변화 분석론 뷰 (작성해주신 세계관) -->
+            <!-- 2. 주요 사태 일지 및 정세 변화 분석론 뷰 (작성해주신 세계관 + 사진 삽입) -->
             <div id="viewLore" style="display: none;">
                 <div class="doc-header">
                     <h1 style="font-size: 1.3rem; letter-spacing: 1px;">[ZHONGHUA NET] 근대 대륙 변혁기 이후 세계 정세 변동사</h1>
@@ -712,6 +743,12 @@
                         <li><strong>이족보행 병기 '프라임' 탄생:</strong> 싱크로나이트가 생체 뇌파(Bio-Wave)에 반응해 운동 에너지를 발생시킨다는 점을 증명, 거대 이족보행 병기 개발로 전술 패러다임 파괴.</li>
                     </ul>
 
+                    <!-- 1번 사진 삽입: 싱크로나이트 -->
+                    <div class="lore-img-container">
+                        <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/synchronite.png" alt="싱크로나이트 광석">
+                        <div class="lore-img-caption">[FIG-01] 지정 관리 물질 : 미지 광물 '싱크로나이트' 채굴 현장 보존 샘플</div>
+                    </div>
+
                     <h3>[CODE-02] 제1차 세계 대전 및 전후 세계 개편 (THE GREAT WAR)</h3>
                     <ul>
                         <li><strong>동맹국의 압도적 승리:</strong> [독일 제국 - 오스트리아·헝가리 제국 - 오스만 제국 - 중화제국] 동맹국의 완벽한 승리로 종결.</li>
@@ -725,11 +762,23 @@
                         <li><strong>오염 증후군 (싱크로시스 / 강철귀):</strong> 뇌파 동기화 과부하로 자아 인지가 파괴되는 정신 괴리 현상. 3단계 돌입자(강철귀)는 발견 즉시 사살, 1~2단계 격리자는 오메가 프로젝트 파일럿 소모품으로 강제 차출.</li>
                     </ul>
 
+                    <!-- 2번 사진 삽입: 싱크로시스 병 -->
+                    <div class="lore-img-container">
+                        <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/synchronosis.png" alt="싱크로시스 증후군 감염자">
+                        <div class="lore-img-caption">[FIG-02] 오염 증후군 2단계 진행 환자 (신체 말단 변색 및 신경계 고착화 관찰)</div>
+                    </div>
+
                     <h3>[CODE-04] 제국 지배 및 진압 기구 (ZHONGHUA FORCES)</h3>
                     <ul>
                         <li><strong>국가안전부 공안부 제4국:</strong> 반정부 사상 통제, 불순분자 사찰, 고문, 오메가 프로젝트 지휘.</li>
                         <li><strong>진동(鎭東) 제7프라임 대대:</strong> 식민지 주둔 최정예 기동대, 저항군 거점을 압살하는 공성 진압 특화.</li>
                     </ul>
+
+                    <!-- 3번 사진 삽입: 보안국 인물들 -->
+                    <div class="lore-img-container">
+                        <img src="https://raw.githubusercontent.com/speed4wd3651-dot/project-OHMEGA/main/security_force.png" alt="제국 국가안전부 공안부 수뇌부">
+                        <div class="lore-img-caption">[FIG-03] 중화제국 국가안전부 공안부 제4국 지휘관 및 수뇌부 열람 기록</div>
+                    </div>
 
                     <h3>[CODE-05] 제거 대상 적대 세력 (REBEL FORCES)</h3>
                     <ul>
@@ -743,7 +792,7 @@
     <footer>
         <div class="terminal-logs" id="termLogs">
             <div>[시스템] 제국 통제 데이터베이스 연결 완료 (프로토콜 AX-2026).</div>
-            <div>[안내] 사이드바에서 '주요 사태 일지 및 정세 변화 분석론'을 클릭하면 세계관 문서가 열립니다.</div>
+            <div>[안내] 사이드바에서 '주요 사태 일지 및 정세 변화 분석론'을 클릭하면 사진 자료가 포함된 세계관 문서가 열립니다.</div>
             <div>[도움말] '도움말' 또는 'help'를 입력하면 명령어 목록을 출력합니다.</div>
         </div>
         <div class="cmd-line">
