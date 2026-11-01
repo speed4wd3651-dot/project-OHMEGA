@@ -143,12 +143,12 @@
         /* Main Container - 반응형 그리드 설정 */
         main {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 320px 1fr;
             flex: 1;
             position: relative;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             main {
                 grid-template-columns: 1fr; /* 모바일에서는 1열로 세로 배치 */
             }
@@ -164,7 +164,7 @@
             gap: 15px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             aside {
                 border-right: none;
                 border-bottom: 1px solid var(--main-dim);
@@ -196,9 +196,17 @@
             padding: 8px;
             border: 1px solid transparent;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-item span:first-child {
+            word-break: keep-all;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -445,9 +453,9 @@
             <div class="panel-box">
                 <div class="panel-title">기밀 문서 보관소</div>
                 <ul class="nav-list">
-                    <li class="nav-item active"><span>AX-2026-OHMEGA</span><span>[열람중]</span></li>
-                    <li class="nav-item"><span>KX-9021-KRA</span><span>[대기]</span></li>
-                    <li class="nav-item"><span>IM-0012-PURGE</span><span>[잠금]</span></li>
+                    <li class="nav-item active"><span>[대외비] 방첩 감시 대상자 인물 프로필</span><span>[열람중]</span></li>
+                    <li class="nav-item"><span>[대외비] 주요 사태 일지 및 정세 변화 분석론</span><span>[대기]</span></li>
+                    <li class="nav-item"><span>[대외비] 특수 사건 조사 기록 및 경위서</span><span>[잠금]</span></li>
                 </ul>
             </div>
 
@@ -529,7 +537,7 @@
                         <p><span class="field-label">• 신체 제원:</span> 37세 / 185cm</p>
                         <p><span class="field-label">• 성향 분석:</span> 극심한 니코틴 의존(연초), 전자담배 거부반응</p>
                         <p><span class="field-label">• 특이사항:</span></p>
-                        <p>- <span class="redacted" onclick="revealText(this)">부친이 임시정부 부장을 역임한 핵심 가문 출신이나, 제국연맹 사건 당시 가문과 부락 전체가 불순분자 예방 학살의 표적이 되어 전멸함. 혼자 살아남은 생존자로서 제국에 대한 증오심이 광신적인 수준임.</span></p>
+                        <p>- <span class="redacted" onclick="revealText(this)">부친이 임시정부 부장을 역임한 핵심 가문 출신이었으나, 제국연맹 사건 당시 가문과 부락 전체가 불순분자 예방 학살의 표적이 되어 전멸함. 혼자 살아남은 생존자로서 제국에 대한 증오심이 광신적인 수준임.</span></p>
                         <p>- <span class="redacted" onclick="revealText(this)">심장 질환으로 인해 최신형 기체 운용(파일럿)은 불가능 판정을 받았으나, 대인 테러 및 게릴라 폭파 공작의 최전선 지휘관으로서 제국 점령 지대의 치안을 심각하게 위해하고 있음.</span></p>
                     </div>
                 </div>
